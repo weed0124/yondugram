@@ -68,6 +68,7 @@ THIRD_PARTY_APPS = [
     'allauth.account',  # registration
     'allauth.socialaccount',    # registration
     'rest_framework',  # REST framework
+    'taggit', # Tags for the photos
 ]
 LOCAL_APPS = [
     'yondugram.users.apps.UsersAppConfig',
@@ -250,3 +251,4 @@ SOCIALACCOUNT_ADAPTER = 'yondugram.users.adapters.SocialAccountAdapter'
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+TAGGIT_CASE_INSENSITIVE = True
