@@ -1,6 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import store, { history } from 'redux/configureStore';
+import App from 'components/App';
+import I18N from 'redux-i18n';
+import { translations } from "translations";
+import "ReactotronConfig";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    <Provider store={store}>
+        <ConnectedRouter history={history}>
+        <I18N translations={translations} initialLang="en" fallbackLang="en">
+            <App />
+        </I18N>
+        </ConnectedRouter> 
+    </Provider>,
+document.getElementById('root'));

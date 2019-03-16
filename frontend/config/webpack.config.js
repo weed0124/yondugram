@@ -96,19 +96,19 @@ module.exports = function(webpackEnv) {
                 flexbox: 'no-2009',
               },
               stage: 3,
-            }),
+            })
           ],
           sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
         },
       },
     ].filter(Boolean);
     if (preProcessor) {
-      loaders.push({
-        loader: require.resolve(preProcessor),
-        options: {
-          sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
-        },
-      });
+      loaders.push(preProcessor
+        // loader: require.resolve(preProcessor),
+        // options: {
+        //   sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
+        // },
+      );
     }
     return loaders;
   };
@@ -413,6 +413,7 @@ module.exports = function(webpackEnv) {
                   ? shouldUseSourceMap
                   : isEnvDevelopment,
                 modules: true,
+                camelCase: true,
                 getLocalIdent: getCSSModuleLocalIdent,
               }),
             },
@@ -425,11 +426,18 @@ module.exports = function(webpackEnv) {
               use: getStyleLoaders(
                 {
                   importLoaders: 2,
-                  sourceMap: isEnvProduction
-                    ? shouldUseSourceMap
-                    : isEnvDevelopment,
+                  modules:true,
+                  camelCase:true,
+                  getLocalIdent: getCSSModuleLocalIdent,
+                  sourceMap: isEnvProduction && shouldUseSourceMap,
                 },
-                'sass-loader'
+                {
+                  loader: require.resolve("sass-loader"),
+                  options: {
+                    data: `@import "${paths.appSrc}/config/_variables.scss";`,
+                    sourceMap: isEnvProduction && shouldUseSourceMap,
+                  }
+                }
               ),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
@@ -444,13 +452,17 @@ module.exports = function(webpackEnv) {
               use: getStyleLoaders(
                 {
                   importLoaders: 2,
-                  sourceMap: isEnvProduction
-                    ? shouldUseSourceMap
-                    : isEnvDevelopment,
+                  sourceMap: isEnvProduction && shouldUseSourceMap,
                   modules: true,
                   getLocalIdent: getCSSModuleLocalIdent,
                 },
-                'sass-loader'
+                {
+                  loader: require.resolve('sass-loader'),
+                  options: {
+                    data: `@import "${paths.appSrc}/config/_variables.scss";`,
+                    sourceMap: isEnvProduction && shouldUseSourceMap,
+                  }
+                }
               ),
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
