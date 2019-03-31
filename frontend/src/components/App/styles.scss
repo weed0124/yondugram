@@ -1,5 +1,7 @@
 @import "reset-css";
+@import url('https://fonts.googleapis.com/css?family=Roboto:300:400,500');
 
 body {
     background-color: $bg-color;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }

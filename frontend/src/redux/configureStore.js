@@ -4,7 +4,7 @@ import { connectRouter } from 'connected-react-router'
 import createHistory from "history/createBrowserHistory";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import users from "redux/modules/users";
+import user from "redux/modules/user";
 import { i18nState } from "redux-i18n";
 import Reactotron from "ReactotronConfig";
 
@@ -16,7 +16,7 @@ const middlewares = [thunk, routerMiddleware(history)];
 
 const reducer = combineReducers({
   router: connectRouter(history),
-  users,
+  user,
   i18nState
 });
 
