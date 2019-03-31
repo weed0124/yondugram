@@ -1,0 +1,89 @@
+#: src/components/Auth/presenter.js
+msgid ""
+msgstr ""
+"Language:kr"
+
+#: src/components/Auth/presenter.js
+msgid "Have an account?"
+msgstr ""
+
+#: src/components/Auth/presenter.js
+msgid "Don't have an account?"
+msgstr ""
+
+#: src/components/Auth/presenter.js
+msgid "Sign up"
+msgstr "가입"
+
+#: src/components/Auth/presenter.js
+msgid "Get the app"
+msgstr ""
+
+#: src/components/AuthForms/index.js
+msgid "or"
+msgstr "또는"
+
+#: src/components/AuthForms/index.js
+msgid "Log in with Facebook"
+msgstr "Facebook으로 로그인"
+
+#: src/components/AuthForms/index.js
+msgid "Forgot password?"
+msgstr "비밀번호를 잊으셨습니까?"
+
+#: src/components/AuthForms/index.js
+msgid "Sign up to see photos and videos from your friends."
+msgstr ""
+
+#: src/components/AuthForms/index.js
+msgid "By signing up, you agree to our "
+msgstr ""
+
+#: src/components/AuthForms/index.js
+msgid "Terms & Privacy Policy"
+msgstr ""
+
+#: src/components/Footer/index.js
+msgid "About Us"
+msgstr "yondugram 정보"
+
+#: src/components/Footer/index.js
+msgid "Support"
+msgstr "지원"
+
+#: src/components/Footer/index.js
+msgid "Blog"
+msgstr "홍보 센터"
+
+#: src/components/Footer/index.js
+msgid "Press"
+msgstr ""
+
+#: src/components/Footer/index.js
+msgid "API"
+msgstr ""
+
+#: src/components/Footer/index.js
+msgid "Jobs"
+msgstr "채용 정보"
+
+#: src/components/Footer/index.js
+msgid "Privacy"
+msgstr ""
+
+#: src/components/Footer/index.js
+msgid "Terms"
+msgstr ""
+
+#: src/components/Footer/index.js
+msgid "Directory"
+msgstr ""
+
+#: src/components/Footer/index.js
+msgid "Language"
+msgstr "언어"
+
+#: src/components/Footer/index.js
+msgid "© 2019 yondugram"
+msgstr "© 2019 yondugram"
+

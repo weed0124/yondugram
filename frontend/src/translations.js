@@ -1,14 +1,27 @@
 export const translations = {
-    kr: {
-        "Login in":"로그인",
-        "About Us":"Yondugram 정보",
-        "Support":"지원",
-        "Blog":"홍보 센터",
-        "Press":"API",
-        "Jobs":"채용 정보",
-        "Privacy":"개인정보처리방침",
-        "Terms":"약관",
-        "Directory":"디렉터리",
-        "Language":"언어"
-    }
+  'kr': {
+    'Have an account?': '',
+    'Don\'t have an account?': '',
+    'Sign up': '가입',
+    'Get the app': '',
+    'or': '또는',
+    'Log in with Facebook': 'Facebook으로 로그인',
+    'Forgot password?': '비밀번호를 잊으셨습니까?',
+    'Sign up to see photos and videos from your friends.': '',
+    'By signing up, you agree to our ': '',
+    'Terms & Privacy Policy': '',
+    'About Us': 'yondugram 정보',
+    'Support': '지원',
+    'Blog': '홍보 센터',
+    'Press': '',
+    'API': '',
+    'Jobs': '채용 정보',
+    'Privacy': '',
+    'Terms': '',
+    'Directory': '',
+    'Language': '언어',
+    '© 2019 yondugram': '© 2019 yondugram',
+  },
+  'options': {
+  },
 }
