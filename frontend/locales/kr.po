@@ -19,30 +19,6 @@ msgstr "가입"
 msgid "Get the app"
 msgstr ""
 
-#: src/components/AuthForms/index.js
-msgid "or"
-msgstr "또는"
-
-#: src/components/AuthForms/index.js
-msgid "Log in with Facebook"
-msgstr "Facebook으로 로그인"
-
-#: src/components/AuthForms/index.js
-msgid "Forgot password?"
-msgstr "비밀번호를 잊으셨습니까?"
-
-#: src/components/AuthForms/index.js
-msgid "Sign up to see photos and videos from your friends."
-msgstr ""
-
-#: src/components/AuthForms/index.js
-msgid "By signing up, you agree to our "
-msgstr ""
-
-#: src/components/AuthForms/index.js
-msgid "Terms & Privacy Policy"
-msgstr ""
-
 #: src/components/Footer/index.js
 msgid "About Us"
 msgstr "yondugram 정보"
