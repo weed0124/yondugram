@@ -77,7 +77,6 @@ THIRD_PARTY_APPS = [
     'corsheaders', # To accept requests from React
 ]
 LOCAL_APPS = [
-    'sslserver',
     'yondugram.users.apps.UsersConfig',
     # Your stuff: custom apps go here
     'yondugram.images.apps.ImagesConfig', # images app
