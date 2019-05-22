@@ -4,10 +4,13 @@ import Textarea from "react-textarea-autosize";
 import styles from "./styles.scss";
 
 const CommentBox = (props, context) => (
-    <form>
+    <form className={styles.commentBox}>
         <Textarea 
             className={styles.input}
             placeholder={context.t("Add a comment...")}
+            value={props.comment}
+            onChange={props.handleInputChange}
+            onKeyPress={props.handleKeyPress}
         />
     </form>
 )
@@ -15,5 +18,12 @@ const CommentBox = (props, context) => (
 CommentBox.contextTypes = {
     t: PropTypes.func.isRequired
 }
+
+CommentBox.propTypes = {
+    handleInputChange: PropTypes.func.isRequired,
+    handleKeyPress: PropTypes.func.isRequired,
+    comment: PropTypes.string.isRequired,
+    photoId: PropTypes.number.isRequired
+};
 
 export default CommentBox;
