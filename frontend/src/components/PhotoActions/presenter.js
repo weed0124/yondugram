@@ -29,7 +29,7 @@ PhotoActions.propTypes = {
   isLiked: PropTypes.bool.isRequired,
   photoId: PropTypes.number.isRequired,
   handleHeartClick: PropTypes.func.isRequired,
-  openLikes: PropTypes.func
+  openLikes: PropTypes.func.isRequired
 };
 
 PhotoActions.contextTypes = {

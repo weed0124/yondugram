@@ -18,7 +18,6 @@ class Container extends Component {
         this.setState({
             [name]: value
         });
-        console.log(this.state)
     }
 
     _handleSubmit = event => {
@@ -26,7 +25,6 @@ class Container extends Component {
         const { createAccount } = this.props;
         event.preventDefault();
         createAccount(username, password, email, name);
-        console.log(this.state)
     }
 
     _handleFacebookLogin = response => {

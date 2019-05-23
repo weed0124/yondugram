@@ -23,7 +23,6 @@ class Container extends Component {
         const { username, password } = this.state;
         event.preventDefault();
         usernameLogin(username, password);
-        console.log(this.state)
     }
 
     _handleFacebookLogin = response => {

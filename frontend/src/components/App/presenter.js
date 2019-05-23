@@ -11,7 +11,6 @@ const App = props => [
     props.isLoggedIn ? <Navigation key={1}/> : null,
     props.isLoggedIn ? <PrivateRoutes key={2} /> : <PublicRoutes key={2} />,
     <Footer key={3}/>,
-    console.log('App.props', props)
 ];
 
 App.propTypes = {
