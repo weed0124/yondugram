@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from yondugram.users import models as user_models
 from yondugram.images import models as image_models
+from django.contrib.humanize.templatetags.humanize import naturaltime
 
 class Notification(image_models.TimeStampedModel):
 
@@ -19,6 +20,10 @@ class Notification(image_models.TimeStampedModel):
 
     class Meta:
         ordering = ['-created_at']
+
+    @property
+    def natural_time(self):
+        return naturaltime(self.created_at)
 
     def __str__(self):
         return 'From: {} - To: {}'.format(self.creator, self.to)

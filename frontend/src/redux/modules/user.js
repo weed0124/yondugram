@@ -8,13 +8,15 @@ const SET_USER_LIST = "SET_USER_LIST";
 const FOLLOW_USER = "FOLLOW_USER";
 const UNFOLLOW_USER = "UNFOLLOW_USER";
 const SET_IMAGE_LIST = "SET_IMAGE_LIST";
+const SET_NOTIFI_LIST = "SET_NOTIFI_LIST";
 
 // action creators
 
-function saveToken(token) {
+function saveToken(token, username) {
   return {
     type: SAVE_TOKEN,
-    token
+    token,
+    username
   };
 }
 
@@ -52,6 +54,13 @@ function setImageList(imageList) {
   };
 }
 
+function setNotification(notifiList) {
+  return {
+    type: SET_NOTIFI_LIST,
+    notifiList
+  }
+}
+
 // API actions
 
 function facebookLogin(access_token) {
@@ -68,7 +77,7 @@ function facebookLogin(access_token) {
       .then(response => response.json())
       .then(json => {
         if (json.token) {
-          dispatch(saveToken(json.token));
+          dispatch(saveToken(json.token, json.user.username));
         }
       })
       .catch(err => console.log(err));
@@ -90,7 +99,7 @@ function usernameLogin(username, password) {
       .then(response => response.json())
       .then(json => {
         if (json.token) {
-          dispatch(saveToken(json.token));
+          dispatch(saveToken(json.token, json.user.username));
         }
       })
       .catch(err => console.log(err));
@@ -201,6 +210,40 @@ function getExplore() {
   };
 }
 
+function getNotification() {
+  return async (dispatch, getState) => {
+      const { user } = getState();
+      const { token } = user;
+      await fetch(`/notifications/`, {
+          method: "GET",
+          headers: {
+              Authorization: `JWT ${token}`,
+              "Content-Type": "application/json"
+          }
+      })
+      .then(response => {
+          console.log(response)
+          if (response.status === 401) {
+              dispatch(logout());
+          }
+          return response.json()
+      })
+      .then(json => {
+          dispatch(setNotification(json))
+          if (!user.userList) {
+              const userList = json.map(notifiList => {
+                  if (notifiList.notification_type === "follow") {
+
+                      return { ...notifiList.creator };
+                  }
+                  return undefined
+              }).filter(n => { return n !== undefined });
+              dispatch(setUserList(userList))
+          }
+      })
+  }
+}
+
 function searchByTerm(searchTerm) {
   return async (dispatch, getState) => {
     const { user: { token } } = getState();
@@ -269,6 +312,8 @@ function reducer(state = initialState, action) {
       return applyUnfollowUser(state, action);
     case SET_IMAGE_LIST:
       return applySetImageList(state, action);
+    case SET_NOTIFI_LIST:
+      return applySetNotifiList(state, action);
     default:
       return state;
   }
@@ -303,29 +348,62 @@ function applySetUserList(state, action) {
 
 function applyFollowUser(state, action) {
   const { userId } = action;
-  const { userList } = state;
+  const { userList, notifiList } = state;
   const updatedUserList = userList.map(user => {
     if (user.id === userId) {
       return { ...user, following: true };
     }
     return user;
   });
+  const updatedNotifiList = notifiList.map(notifi => {
+    if (notifi.notification_type === "follow") {
+        if (notifi.creator.id === userId) {
+            return {
+                ...notifi,
+                creator: {
+                    ...notifi.creator,
+                    following: false
+                }
+            }
+        }
+    }
+    return notifi;
+  });
   return {
-    ...state,
-    userList: updatedUserList
-  };
+      ...state,
+      userList: updatedUserList,
+      notifiList: updatedNotifiList
+  }
 }
 
 function applyUnfollowUser(state, action) {
   const { userId } = action;
-  const { userList } = state;
+  const { userList, notifiList } = state;
   const updatedUserList = userList.map(user => {
     if (user.id === userId) {
       return { ...user, following: false };
     }
     return user;
   });
-  return { ...state, userList: updatedUserList };
+  const updatedNotifiList = notifiList.map(notifi => {
+    if (notifi.notification_type === "follow") {
+        if (notifi.creator.id === userId) {
+            return {
+                ...notifi,
+                creator: {
+                    ...notifi.creator,
+                    following: false
+                }
+            }
+        }
+    }
+    return notifi;
+  });
+  return {
+      ...state,
+      userList: updatedUserList,
+      notifiList: updatedNotifiList
+  }
 }
 
 function applySetImageList(state, action) {
@@ -334,6 +412,14 @@ function applySetImageList(state, action) {
     ...state,
     imageList
   };
+}
+
+function applySetNotifiList(state, action) {
+  const { notifiList } = action;
+  return {
+    ...state,
+    notifiList
+  }
 }
 
 // exports
@@ -347,7 +433,8 @@ const actionCreators = {
   followUser,
   unfollowUser,
   getExplore,
-  searchByTerm
+  searchByTerm,
+  getNotification
 };
 
 export { actionCreators };

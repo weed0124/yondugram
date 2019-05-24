@@ -22,7 +22,7 @@ App.propTypes = {
 const PrivateRoutes = props => (
     <Switch>
         <Route exact path="/" component={Feed} />
-        <Route exact path="/explore" component={Explore} />
+        <Route exact path="/explore/" component={Explore} />
         <Route exact path="/search/:searchTerm" component={Search} />
     </Switch>
 )
